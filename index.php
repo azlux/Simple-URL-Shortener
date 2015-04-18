@@ -89,6 +89,7 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 					    var long = window.location.href;
 					    var good_long = long.split("index.php?");
 					    document.getElementById("newURL").innerHTML = good_long[0]+short;
+					    window.prompt("Copy to clipboard: Ctrl+C, Enter",good_long[0]+short );
 					</script>
 				</div>';
     } else {
