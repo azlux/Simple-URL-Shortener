@@ -78,7 +78,7 @@ table td {
     border-bottom:1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
 
-    max-height: 500px;
+    overflow: hidden;
 
     background: #fafafa;
     background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
