@@ -1,0 +1,105 @@
+body {
+    font-family: Verdana, Arial, serif;
+    font-size: 12px;
+    color: #595441;
+    background: url("sunset.png") no-repeat fixed;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+#content {
+    max-width: 400px;
+    margin: 50px auto 0 auto;
+    min-height: 150px;
+    background: rgba(255, 255, 255, 0.40);
+    text-align: left;
+    padding: 5px 20px 10px 20px;
+    border: 3px solid #2a85b3;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+#form, #shortened {
+    margin: 20px auto 0 auto;
+}
+
+#form label {
+    display: block;
+    margin: 0 0 5px;
+}
+
+#form input[type="text"] {
+    color: #555;
+    height: 30px;
+    width: 380px;
+    padding: 0 0 0 10px;
+    margin-top: 2px;
+    background: #FBFBFB;
+    border: 1px solid #FBC28A;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    font: normal 15px/15px Arial, Helvetica, sans-serif;
+}
+
+#form .button, #userID {
+    display: block;
+    background-color: #5DBDC9;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-border-radius: 5px;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #36ADBD;
+}
+
+#form .button:hover, #userID:hover {
+    background-color: #36ADBD;
+}
+
+#credits {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #1A9FA2;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#shortened {
+    margin-top: 75px;
+    font-size: 20px;
+    color: #1A9FA2;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none !important;
+    background-color: white;
+    padding: 1px;
+    box-shadow: 0 0 25px 10px white;
+}
+
+#shortened a {
+    color: #1A9FA2;
+    text-decoration: none !important;
+    font-style: italic;
+}
+
+#shortened a:hover {
+    color: #1DABAE;
+    text-decoration: none !important;
+}
+
+#comment {
+    margin-left: 220px;
+}
+
+#userID {
+    padding: 10px;
+    text-decoration: none;
+    width: 140px;
+    margin-top: 10px;
+}
