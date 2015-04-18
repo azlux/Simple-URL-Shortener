@@ -46,7 +46,7 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
         while ($unic == 0) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $url_shortened = '';
-            for ($i = 0; $i < 4; $i++) {
+            for ($i = 0; $i < 5; $i++) { //This number is the number of letters after the adress
                 $url_shortened .= $characters[rand(0, strlen($characters) - 1)];
             }
 
