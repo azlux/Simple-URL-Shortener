@@ -5,13 +5,13 @@ This shortener create a ID for every user to have a list of short url create by 
 Writed to work into subfolder. (don't need to be at the root)
 </p>
 <p>
-File bdd.php to change with your own user/password of your MySQL's user.< /br>
+File bdd.php to change with your own user/password of your MySQL's user.<br>
 I have in every css file there are in line 5 : 
 </p>
 	background: url("sunset.png") no-repeat fixed;
 <p>
 Add a picture or remove this line.
-<p></p>
+</p><p></p>
 #####Nginx configuration :
     if (!-e $request_filename) {
     		rewrite ^/([^/]*)$ /index.php?site=$1 last;
