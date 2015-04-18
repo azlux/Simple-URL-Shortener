@@ -15,11 +15,11 @@ Writed to work into subfolder. (don't need to be at the root)
 #####Commande MySQL to create the table :
 	CREATE TABLE shortener
 	(
-			id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			id INT(6) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			short CHAR(5) NOT NULL,
 			url VARCHAR(700) NOT NULL,
 			comment CHAR(30),
-			views INT,
+			views INT(5),
 			id_user CHAR(4),
 			date DATE NOT NULL
 	);
