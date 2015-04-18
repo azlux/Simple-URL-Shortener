@@ -7,7 +7,6 @@
 </head>
 
 <body><?php
-$root_url = $_SERVER['REQUEST_URI'];
 include("bdd.php");
 
 if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
@@ -79,12 +78,18 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 					</div>
 
 					<div id="shortened">
-						URL shortened : <a href="' . $url_shortened . '">' . $root_url . "/" . $url_shortened . '</a>
+						URL shortened : <br /><a id="newURL" href="./' . $url_shortened . '">'. $url_shortened . '</a>
 					</div>
 
 					<div id="credits">
 						Shortener by Azlux
 					</div>
+					<script>
+					    var short = document.getElementById("newURL").innerHTML;
+					    var long = window.location.href;
+					    var good_long = long.split("index.php?");
+					    document.getElementById("newURL").innerHTML = good_long[0]+short;
+					</script>
 				</div>';
     } else {
         echo "Wrong URL";
