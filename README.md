@@ -11,7 +11,8 @@ I have in every css file there are in line 5 :
 	background: url("sunset.png") no-repeat fixed;
 <p>
 Add a picture or remove this line.
-</p><p></p>
+</p>
+=============
 #####Nginx configuration :
     if (!-e $request_filename) {
     		rewrite ^/([^/]*)$ /index.php?site=$1 last;
@@ -36,5 +37,5 @@ Add a picture or remove this line.
 
 <p><br/>
 Credit :<br />
-base on code provide by @SilouFr
+base on code provided by @SilouFr
 </p>
