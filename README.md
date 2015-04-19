@@ -28,13 +28,12 @@ if (!-e $request_filename) {
 ```SQL
 CREATE TABLE shortener
 (
-		id INT(6) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-		short CHAR(5) NOT NULL,
-		url VARCHAR(700) NOT NULL,
-		comment CHAR(30),
-		views INT(5),
-		id_user CHAR(4),
-		date DATE NOT NULL
+    short CHAR(5) PRIMARY KEY NOT NULL,
+    url VARCHAR(700) NOT NULL,
+    comment CHAR(30),
+    views INT,
+    id_user CHAR(4),
+    date DATE NOT NULL
 );
 CREATE INDEX id_user ON shortener (id_user);
 ```
