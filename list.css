@@ -113,3 +113,12 @@ table tr:hover td {
     color: #DA773D;
     font-weight: bold;
 }
+
+.delete{
+    position: relative;
+    left: 37px;
+    top: 3px;
+    border: 0px none;
+    display: inline-block;
+    height: 16px;
+}
