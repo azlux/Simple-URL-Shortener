@@ -19,7 +19,7 @@ Add a picture or remove this line.
     }
 
 #####Apache configuration (.htaccess) :
-    ..... (help)
+    not tested (send me feedback)
 
 #####Commande MySQL to create the table :
 	CREATE TABLE shortener
