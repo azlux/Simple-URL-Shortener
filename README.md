@@ -1,7 +1,7 @@
 # simple-shortener
 
 <p>Simple shortener working with MySQL database (for now) in php and small javascript functions.
-This shortener create a ID for every user to have a list of short url create by user (working with cookie).
+This shortener create a ID for every user to have a list of short url create by user (working with cookie). The user can add comments for the link to find it faster into its history.
 Writed to work into subfolder. (don't need to be at the root)
 </p>
 <p>
