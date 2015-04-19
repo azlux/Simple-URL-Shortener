@@ -30,7 +30,7 @@ if (isset($_GET['userID']) && $_GET['userID'] != "") {
     while ($row = $list->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td><a href=\"./" . $row['short'] . "\" >" . $row['short'] . "</a></td>";
         echo "<td><div class=\"comment\">" . $row['comment'] . "</div><a href=\"./" . $row['short'] . "\" >" . $row['url'] . "</a></td>";
-        echo "<td>" . $row['views'] . "<a href=./list.php?userID=" . $_GET['userID'] . "&delete=" . $row['short'] . "><img src=\"delete-icon.png\"></td></tr>";
+        echo "<td>" . $row['views'] . "<a href=./list.php?userID=" . $_GET['userID'] . "&delete=" . $row['short'] . " class=\"delete\" ><img src=\"delete-icon.png\" /></td></tr>";
     }
     $list->closeCursor();
     echo "</table>";
