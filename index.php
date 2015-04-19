@@ -5,7 +5,6 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="commun.css"/>
 </head>
-
 <body><?php
 include("bdd.php");
 
@@ -13,7 +12,7 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 {
     /*  BDD plan
         TABLE : shortener
-        id | short | url | comment | views | id_user | date
+        short | url | comment | views | id_user | date
     */
 
     $site = $_GET['site'];
@@ -26,14 +25,14 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 
     if ($res_site_exists > 0) //if it exists
     {
-        $get_site = $connexion->prepare('SELECT url, id, views FROM shortener WHERE short=?');
+        $get_site = $connexion->prepare('SELECT url, short, views FROM shortener WHERE short=?');
         $get_site->execute(array($site));
         $res_site = $get_site->fetch(PDO::FETCH_ASSOC);
 
         $views_plus_1 = $res_site['views'] + 1;
 
-        $query_update = $connexion->prepare('UPDATE shortener SET views=? WHERE id=?');
-        $query_update->execute(array($views_plus_1, $res_site['id']));
+        $query_update = $connexion->prepare('UPDATE shortener SET views=? WHERE short=?');
+        $query_update->execute(array($views_plus_1, $res_site['short']));
 
         header('Location: ' . $res_site['url']);
     } else {
@@ -46,7 +45,7 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
         while ($unic == 0) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $url_shortened = '';
-            for ($i = 0; $i < 5; $i++) { //This number is the number of letters after the adress
+            for ($i = 0; $i < 5; $i++) {
                 $url_shortened .= $characters[rand(0, strlen($characters) - 1)];
             }
 
@@ -78,7 +77,7 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 					</div>
 
 					<div id="shortened">
-						URL shortened : <br /><a id="newURL" href="./' . $url_shortened . '">'. $url_shortened . '</a>
+						URL shortened : <br /><a id="newURL" href="./' . $url_shortened . '">' . $url_shortened . '</a>
 					</div>
 
 					<div id="credits">
