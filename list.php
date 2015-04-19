@@ -12,6 +12,11 @@ $root_url = $_SERVER['REQUEST_URI'];
 
 if (isset($_GET['userID']) && $_GET['userID'] != "") {
     include("bdd.php");
+    if (isset($_GET['delete']) && $_GET['delete'] != "") {
+        $req = $connexion->prepare('DELETE FROM shortener WHERE id_user= ? AND short = ?');
+        $req->execute(array($_GET['userID'],$_GET['delete']));
+        $req->closeCursor();
+    }
     echo '
         <table>
             <tr>
@@ -25,8 +30,9 @@ if (isset($_GET['userID']) && $_GET['userID'] != "") {
     while ($row = $list->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td><a href=\"./" . $row['short'] . "\" >" . $row['short'] . "</a></td>";
         echo "<td><div class=\"comment\">" . $row['comment'] . "</div><a href=\"./" . $row['short'] . "\" >" . $row['url'] . "</a></td>";
-        echo "<td>" . $row['views'] . "</td></tr>";
+        echo "<td>" . $row['views'] . "<a href=./list.php?userID=" . $_GET['userID'] . "&delete=" . $row['short'] . "><img src=\"delete-icon.png\"></td></tr>";
     }
+    $list->closeCursor();
     echo "</table>";
 
 } else {
