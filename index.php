@@ -108,10 +108,14 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 				</form>
 			</div>
 			<a id="userID" href="" >List of shortened links</a>
+			<a id="bookmark" href="" onclick="event.preventDefault();"/>Shortcut</a>
+    		<div id="info_shortcut" onclick="document.getElementById(\'instructions\').style.display = \'block\';">i</div>
 			<div id="credits">
 				Shortener by Azlux
 			</div>
-		</div>';
+		</div>
+		<div id="instructions">You can add this link as bookmark (click and drop into your bookmark toolbar). After that, you can click on the bookmark to add the current url page directly into this shortener.<h3>Enjoy the feature !</h3></div>
+		';
 }
 
 ?>

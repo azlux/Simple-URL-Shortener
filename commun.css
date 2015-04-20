@@ -44,7 +44,7 @@ body {
     font: normal 15px/15px Arial, Helvetica, sans-serif;
 }
 
-#form .button, #userID {
+#form .button, #userID , #bookmark{
     display: block;
     background-color: #5DBDC9;
     border-radius: 5px;
@@ -98,8 +98,49 @@ body {
 }
 
 #userID {
+    display: inline-block;
     padding: 10px;
     text-decoration: none;
     width: 140px;
     margin-top: 10px;
+}
+
+#bookmark {
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    width: 70px;
+    margin-top: 10px;
+    position: relative;
+    left: 135px;
+}
+#info_shortcut{
+    background: none repeat scroll 0% 0% rgba(109, 107, 106, 0.63);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 50%;
+    color: #EBE7E4;
+    font-family: "lobster","cursive";
+    text-align: center;
+    width: 17px;
+    padding-bottom: 3px;
+    font-size: 14px;
+    height: 15px;
+    position: relative;
+    left: 109px;
+}
+#instructions {
+    display: none;
+    position: fixed;
+    padding: 2em;
+    width: 300px;
+    bottom: 2em;
+    right: 2em;
+    background: none repeat scroll 0% 0% #FDFDBD;
+    border-radius: 10px;
+    border: 1px solid #DDDBDA;
+    z-index: 40;
+    font-size: 0.9em;
+    color: #000;
+    line-height: 1.6em;
 }
