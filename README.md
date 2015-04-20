@@ -1,12 +1,15 @@
 # simple-shortener
 
-<p>Simple shortener working with MySQL database (for now) in php and small javascript functions.
+<p>Simple shortener working with MySQL database (for now) in php and small javascript functions.<br /><br />
 This shortener create a ID for every user to have a list of short url create by user (working with cookie). The user can add comments for the link to find it faster into its history.<br />
+<br/>
+Nice shortcut added. The shortcut will create a new short url of your current page when you click on it.<br /><br />
 Writed to work into subfolder. (don't need to be at the root)
 </p>
+=======
 <p>
 File bdd.php to change with your own user/password of your MySQL's user.<br />
-I have in every css file there are in line 5 : 
+Into every css file there are in line 5 : 
 </p>
 ```CSS
 background: url("sunset.png") no-repeat fixed;
@@ -14,14 +17,6 @@ background: url("sunset.png") no-repeat fixed;
 <p>
 Add a picture or remove this line.
 </p>
-#####Bookmark :<p>
-If you want to real shortcut for you shortener, create a new bookmark and copy/paste the content of the file "bookmark.js" as location of the bookmark. This script will create a new short url of the page you are when you clic on it. <br />You just need to change the line </p>
-```JS
-var f = 'http://YOUR_WEBSITE_HERE';
-```
-<p> and if you don't want page title as comments, you can remove the part " + '&comment=' + enc(d.title) " of the line</p>
-```JS
-var p = '?shorten=' + enc(l.href) + '&comment=' + enc(d.title) + '&userID=c5b3';
 ```
 =============
 #####Nginx configuration :
