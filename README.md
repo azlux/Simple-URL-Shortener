@@ -14,6 +14,15 @@ background: url("sunset.png") no-repeat fixed;
 <p>
 Add a picture or remove this line.
 </p>
+#####Bookmark :<p>
+If you want to real shortcut for you shortener, create a new bookmark and copy/paste the content of the file "bookmark.js" as location of the bookmark. This script will create a new short url of the page you are when you clic on it. <br />You just need to change the line </p>
+```JS
+var f = 'http://YOUR_WEBSITE_HERE';
+```
+<p> and if you don't want page title as comments, you can remove the part " + '&comment=' + enc(d.title) " of the line</p>
+```JS
+var p = '?shorten=' + enc(l.href) + '&comment=' + enc(d.title) + '&userID=c5b3';
+```
 =============
 #####Nginx configuration :
 ```NGINX
