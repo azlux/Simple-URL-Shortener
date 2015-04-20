@@ -17,7 +17,7 @@ background: url("sunset.png") no-repeat fixed;
 <p>
 Add a picture or remove this line.
 </p>
-```
+
 =============
 #####Nginx configuration :
 ```NGINX
