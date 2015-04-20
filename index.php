@@ -71,26 +71,26 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
         $req->closeCursor();
 
         echo '
-	<div id="content">
-		<div id="site">
-			<a href=".">Shortener</a>
-		</div>
+				<div id="content">
+					<div id="site">
+						<a href=".">Shortener</a>
+					</div>
 
-		<div id="shortened">
-			URL shortened : <br /><a id="newURL" href="./' . $url_shortened . '">' . $url_shortened . '</a>
-		</div>
+					<div id="shortened">
+						URL shortened : <br /><a id="newURL" href="./' . $url_shortened . '">' . $url_shortened . '</a>
+					</div>
 
-		<div id="credits">
-			Shortener by Azlux
-		</div>
-		<script>
-		    var short = document.getElementById("newURL").innerHTML;
-		    var long = window.location.href;
-		    var good_long = long.split("index.php?");
-		    document.getElementById("newURL").innerHTML = good_long[0]+short;
-		    window.prompt("Copy to clipboard: Ctrl+C, Enter",good_long[0]+short );
-		</script>
-	</div>';
+					<div id="credits">
+						Shortener by Azlux
+					</div>
+					<script>
+					    var short = document.getElementById("newURL").innerHTML;
+					    var long = window.location.href;
+					    var good_long = long.split("index.php?");
+					    document.getElementById("newURL").innerHTML = good_long[0]+short;
+					    window.prompt("Copy to clipboard: Ctrl+C, Enter",good_long[0]+short );
+					</script>
+				</div>';
     } else {
         echo "Wrong URL";
     }
@@ -98,20 +98,20 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 } else //need to short
 {
     echo '
-	<div id="content">
-		<div id="form">
-			<form name="url_form" action="index.php" method="get">
-				<input type="text" name="shorten" autocomplete="off" placeholder="Link to shorten" />
-				<input type="text" name="comment" id="comment" maxlength="30" autocomplete="off" placeholder="Optional comment" style="width: 160px;"/>
-				<input type="hidden" name="userID" value="" id="userID2" />
-				<input type="submit" value="Shorten" class="button"/>
-			</form>
-		</div>
-		<a id="userID" href="" >List of shortened links</a>
-		<div id="credits">
-			Shortener by Azlux
-		</div>
-	</div>';
+		<div id="content">
+			<div id="form">
+				<form name="url_form" action="index.php" method="get">
+					<input type="text" name="shorten" autocomplete="off" placeholder="Link to shorten" />
+					<input type="text" name="comment" id="comment" maxlength="30" autocomplete="off" placeholder="Optional comment" style="width: 160px;"/>
+					<input type="hidden" name="userID" value="" id="userID2" />
+					<input type="submit" value="Shorten" class="button"/>
+				</form>
+			</div>
+			<a id="userID" href="" >List of shortened links</a>
+			<div id="credits">
+				Shortener by Azlux
+			</div>
+		</div>';
 }
 
 ?>

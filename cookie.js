@@ -12,9 +12,8 @@ function getID() {
         return decodeURIComponent(RegExp["$1"]);
     } else {
         createID();
-        getCookie();
+        getID();
     }
 }
-
 document.getElementById("userID").setAttribute('href',"list.php?userID="+getID());
 document.getElementById("userID2").value = getID();
