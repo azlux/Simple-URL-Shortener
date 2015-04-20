@@ -4,7 +4,7 @@ javascript:(function () {
     var enc = encodeURIComponent;
     var f = 'http://******.***/index.php';
     var l = d.location;
-    var p = '?shorten=' + enc(l.href) + '&comment=' + enc(d.title) + '&userID=c5b3';
+    var p = '?shorten=' + enc(l.href) + '&comment=' + enc(d.title) + '&userID=';
     var u = f + p;
     var a = function () {
         if (!w.open(u))l.href = u;
