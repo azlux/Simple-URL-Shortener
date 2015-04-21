@@ -62,11 +62,11 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
         $userID = $_GET['userID'];
         if (isset($_GET['comment']) && $_GET['comment'] != "") {
             $req = $connexion->prepare('INSERT INTO shortener(short,url,comment,id_user,date,views) VALUES (?,?,?,?,?,?)');
-            $req->execute(array($url_shortened, $shorten, $_GET['comment'], $userID, date("Y-m-d"), '0'));
+            $req->execute(array($url_shortened, $shorten, $_GET['comment'], $userID, date("Y-m-d H:i:s"), '0'));
 
         } else {
             $req = $connexion->prepare('INSERT INTO shortener(short,url,id_user,date,views) VALUES (?,?,?,?,?)');
-            $req->execute(array($url_shortened, $shorten, $userID, date("Y-m-d"), '0'));
+            $req->execute(array($url_shortened, $shorten, $userID, date("Y-m-d H:i:s"), '0'));
         }
         $req->closeCursor();
 
