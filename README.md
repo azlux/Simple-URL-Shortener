@@ -37,7 +37,7 @@ CREATE TABLE shortener
     comment CHAR(30),
     views INT,
     id_user CHAR(4),
-    date DATE NOT NULL
+    date DATETIME NOT NULL
 );
 CREATE INDEX id_user ON shortener (id_user);
 ```
