@@ -6,3 +6,8 @@
 
     RewriteRule ^(.*)$ ./index.php?site=$1
 </IfModule>
+
+<Files /database.sqlite3>
+    Order Allow,Deny
+    Deny from all
+</Files>
