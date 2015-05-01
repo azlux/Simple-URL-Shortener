@@ -46,7 +46,7 @@ echo $e->getMessage();
     echo "<h3>The installation is finish. You need to delete the file  \"installation.php\"  now !!! for safety (check if it work before that :)</h3>";
 } elseif (isset($_GET['form'])) {
     echo '
-                <form id="formulaire" action="installation.php?type=mysql" method="post">Username and password of the MySQL database.<br /> the database need to be named "URLShortener"<br />
+                <form id="formulaire" action="installation.php?type=mysql" method="post">Username and password of the MySQL database.<br /> the new database need to be named "URLShortener"<br />
                         <input type="text" name="username" placeholder="Username" />
                         <input type="password" name="pwd" placeholder="Password" />
                         <input type="submit" value="Finish the install" />
