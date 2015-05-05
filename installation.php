@@ -4,7 +4,7 @@ if (isset($_GET['type']) and ($_GET['type'] == 'sqlite3' or $_GET['type'] == 'my
         $connexion = new PDO('sqlite:./database.sqlite3');
         file_put_contents("./bdd.php", '<?php
 try {
-    $connexion = new PDO("sqlite:./database.sqlite3;charset=utf8");
+    $connexion = new PDO("sqlite:./database.sqlite3");
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo $e->getMessage();
