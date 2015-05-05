@@ -25,7 +25,7 @@ location ~* \.(sqlite3|ht)$ {
 }
 ```
 #####Apache configuration (.htaccess) :
-    not tested (send me feedback)
+    tested and approved :)     (delete the file if you are on nginx)
 
 <br/>
 ####Credit :<p>
