@@ -118,7 +118,19 @@ table tr:hover td {
     position: relative;
     left: 37px;
     top: 3px;
-    border: 0px none;
+    border: 0 none;
     display: inline-block;
     height: 16px;
+}
+
+#formDelete {
+    background-color: rgba(191, 191, 191, 0.7);
+    width: 300px;
+    padding: 6px;
+    margin: auto;
+    color: #1A1A1A;
+    border-radius: 8px;
+}
+#formDelete input[type="number"] {
+    width: 33px;
 }
