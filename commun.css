@@ -144,3 +144,44 @@ body {
     color: #000;
     line-height: 1.6em;
 }
+
+/* Banner for github*/
+.forkit {
+    left: -65px;
+    height: 30px;
+    top: 40px;
+    position: absolute;
+    text-decoration: none;
+    width: 250px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.forkit span {
+    background: black;
+    color: white;
+    font-size: 14px;
+    left: 0;
+    padding: 5px 0;
+    position: absolute;
+    text-align: center;
+    width: 250px;
+    -moz-box-shadow: rgba(0,0,0,0.2) 1px 1px 10px;
+    -webkit-box-shadow: rgba(0,0,0,0.2) 1px 1px 10px;
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 10px;
+    -moz-transition: opacity, 1s;
+    -o-transition: opacity, 1s;
+    -webkit-transition: opacity, 1s;
+    transition: opacity, 1s;
+}
+.forkit span:last-child {
+    background: #C68E17;
+    opacity: 0;
+}
+.forkit:hover span:first-child {
+    opacity: 0;
+}
+.forkit:hover span:last-child {
+    opacity: 1;
+}

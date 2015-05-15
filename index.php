@@ -98,6 +98,10 @@ if (isset($_GET['site']) && $_GET['site'] != "") //url shortened
 } else //need to short
 {
     echo '
+		<a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
+			<span>Fork me on GitHub!</span>
+			<span>Get free cookie!</span>
+		</a>
 		<div id="content">
 			<div id="form">
 				<form name="url_form" action="index.php" method="get">
