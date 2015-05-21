@@ -12,7 +12,7 @@ function getID() {
         return decodeURIComponent(RegExp["$1"]);
     } else {
         createID();
-        getID();
+        return getID();
     }
 }
 function bookmark() {
