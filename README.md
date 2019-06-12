@@ -8,10 +8,9 @@ The user can add comments for the link to find it faster into its history.
 Nice shortcut added. The shortcut will create a new short url of your current page when you click on it.
 Writed to work into subfolder. (don't need to be at the root)
 
-=======
 
 ## Installation :
-- 
+- clone this project
 - Copy `config.example.php` to `config.php`
 - Set you config file
 - Call `installation.php` to setup the database

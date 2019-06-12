@@ -52,7 +52,7 @@ if (empty($username)) { // Si l'utilisateur n'est pas connecté
       <input type="password" name="password" placeholder="Password" />
       <input type="submit" value="login" />
     </form></div>';
-    if (PUBLIC_INSTANCE == 'true'){
+    if (ALLOW_SIGNIN == 'true'){
         echo '
         <div class="form signin">
         <form action="login.php?signin" method="POST" id="signin">
