@@ -2,7 +2,7 @@ body {
     font-family: Verdana, Arial, serif;
     font-size: 12px;
     color: #595441;
-    background: url("sunset.png") no-repeat fixed;
+    background-size: cover;
     text-align: center;
     margin-top: 0;
     padding-top: 10px;
@@ -12,10 +12,9 @@ body {
     max-width: 400px;
     margin: 50px auto 0 auto;
     min-height: 150px;
-    background: rgba(255, 255, 255, 0.40);
     text-align: left;
     padding: 5px 20px 10px 20px;
-    border: 3px solid #2a85b3;
+    border: 3px solid;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
     border-radius: 20px;
