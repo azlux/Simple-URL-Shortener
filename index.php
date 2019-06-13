@@ -37,6 +37,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
 </head>
 <body>
+    <div class="banner">
 
 <?php
 $username = $_SESSION['username'];
@@ -62,6 +63,7 @@ if (empty($username)) { // Si l'utilisateur n'est pas connecté
 }
 else {
     echo '<h3>Connected as ' . $username . '</h3>';
+    <a class="button logout"href="<?php echo DEFAULT_URL?>/login.php?logout">Logout</a>
 }
 
 if (PUBLIC_INSTANCE == 'true'){
@@ -72,27 +74,25 @@ if (PUBLIC_INSTANCE == 'true'){
 
 $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $_SESSION['token'] . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
 ?>
+    </div>
     <a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
         <span>Fork me on GitHub!</span>
         <span>Get free cookie!</span>
     </a>
     <div id="content">
-        <div id="form">
-            <form name="url_form" action="shorten.php" method="post">
-                <input type="text" name="url" autocomplete="off" placeholder="Link to shorten" />
-                <input type="text" name="comment" id="comment" maxlength="30" autocomplete="off" placeholder="Optional comment" style="width: 160px;"/>
-                <input type="submit" value="Shorten" class="button"/>
-            </form>
-        </div>
-        <a id="username" href="/list.php" >List of shortened links</a>
-	<a id="bookmark" href="<?php echo $code_js ?>" onclick="event.preventDefault();"/>Shortcut</a>
+        <form class="form shortener" name="url_form" action="shorten.php" method="post">
+            <input type="text" name="url" autocomplete="off" placeholder="Link to shorten" />
+            <input type="text" name="comment" id="comment" maxlength="30" autocomplete="off" placeholder="Optional comment" />
+            <input class="button" type="submit" value="Shorten" class="button"/>
+        </form>
+        <a class="button username" href="/list.php" >List of shortened links</a>
+        <a class="button bookmark" href="<?php echo $code_js ?>" onclick="event.preventDefault();"/>Shortcut</a>
         
-        <div id="info_shortcut" onclick="document.getElementById(\'instructions\').style.display = \'block\';">i</div>
-        <div id="credits">
+        <div class="button" onclick="document.getElementById(\'instructions\').style.display = \'block\';">i</div>
+        <div class="credits">
             Shortener by Azlux
         </div>
     </div>
     <div id="instructions">You can add this link as bookmark (click and drop into your bookmark toolbar). After that, you can click on the bookmark to add the current url page directly into this shortener.<h3>Enjoy the feature !</h3></div>
-    <a href="<?php echo DEFAULT_URL?>/login.php?logout">Logout</a>
 </body>
 </html>

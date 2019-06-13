@@ -13,7 +13,9 @@ include("bdd.php");
     <title>Shortener</title>
     <meta charset="utf-8"/>
 </head>
-<body><a href=".">Go Back !</a>
+<body>
+
+<a class="button" href=".">Go Back !</a> <!-- je vais le mettre dans le header de la page avec login/logout/signin
 
 <?php
 header("Cache-Control: no-cache, must-revalidate");
@@ -74,12 +76,15 @@ else {
 }
 
 echo '</table>
-    <form action="'. $action .'" method="get" id="formDelete" >
-        <label>Remove links older than
-        <input type="number" name="deleteRange" value="30" />days</label><br />
-        <label>keep bookmarks :<input type="checkbox" name="keepBM" value="true" /> </label>
-        <input type="submit" value="Delete" />
-    </form>
-    <a href="' . DEFAULT_URL . '/list.php?UNKNOWN">Get link from no connected people</a>';
+    <div class="form action"> 
+        <form class="form" action="'. $action .'" method="get" id="formDelete" >
+            <label>Remove links older than
+            <input type="number" name="deleteRange" value="30" />days</label><br />
+            <label>keep bookmarks :<input type="checkbox" name="keepBM" value="true" /> </label>
+            <input type="submit" value="Delete" />
+        </form>
+        <a class="button" href="' . DEFAULT_URL . '/list.php?UNKNOWN">Get link from no connected people</a>
+    </div>'
+    ;
 ?>
 </body>
