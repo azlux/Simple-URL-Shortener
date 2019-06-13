@@ -64,7 +64,7 @@ if (empty($username)) { // Si l'utilisateur n'est pas connecté
 }
 else {
     echo '<h3>Connected as ' . $username . '</h3>';
-    <a class="button logout"href="<?php echo DEFAULT_URL?>/login.php?logout">Logout</a>
+    echo '<a class="button logout"href="<?php echo DEFAULT_URL?>/login.php?logout">Logout</a>';
 }
 
 if (PUBLIC_INSTANCE == 'true'){
@@ -81,23 +81,33 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
         <span>Get free cookie!</span>
     </a>
     <div id="content">
-<form name="url_form" action="shorten.php" method="post">
-    <div class="form-group">
-        <label class="form-label" for="shorten_form_url">Link to shorten</label>
-        <input class="form-input" type="text" id="shorten_form_url" name="url"/>
-    </div>
-    <div class="form-group">
-        <label class="form-label" for="shorten_form_comment">Optional comment</label>
-        <input class="form-input" type="text" id="shorten_form_comment" name="comment" maxlength="30">
-    </div>
-    <input type="submit" value="Shorten" class="btn btn-primary"/>
-</form>
-        <a class="button username" href="/list.php" >List of shortened links</a>
-        <a class="button bookmark" href="<?php echo $code_js ?>" onclick="event.preventDefault();"/>Shortcut</a>
-        
-        <div class="button" onclick="document.getElementById(\'instructions\').style.display = \'block\';">i</div>
-        <div class="credits">
-            Shortener by Azlux
+        <form name="url_form" action="shorten.php" method="post">
+            <div class="form-group">
+                <label class="form-label" for="shorten_form_url">Link to shorten</label>
+                <input class="form-input" type="text" id="shorten_form_url" name="url"/>
+            </div>
+            <div class="flex flex-space">
+                <div class="form-group">
+                    <label class="form-label" for="shorten_form_custom">Optional short url</label>
+                    <input class="form-input" type="text" id="shorten_form_custom" name="custom" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="shorten_form_comment">Optional comment</label>
+                    <input class="form-input" type="text" id="shorten_form_comment" name="comment" maxlength="30">
+                </div>
+                </div>
+            <div>
+                <input type="submit" value="Shorten" class="btn btn-primary"/>
+                <a href="/list.php" class="float-right btn">List of shortened links</a>
+            </div>
+        </form>
+        <div class="flex">
+            <div id="credits" class="flex-grow flex-center">
+                <a href="https://github.com/azlux/Simple-URL-Shortener/" class="text-center">
+                    Shortener by Azlux
+                </a>
+            </div>
+            <a href="<?php echo $code_js ?>" class="btn" onclick="event.preventDefault();"/>Bookmark</a>
         </div>
     </div>
     <div id="instructions">You can add this link as bookmark (click and drop into your bookmark toolbar). After that, you can click on the bookmark to add the current url page directly into this shortener.<h3>Enjoy the feature !</h3></div>
