@@ -91,7 +91,7 @@ else { // POST if webpage used
     <head>
         <title>Shortener</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="/assets/css/commun.css"/>
+        <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
     </head>
     <body>
 <?php 

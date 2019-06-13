@@ -34,10 +34,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="/assets/css/commun.css"/>
-<?php
-	echo '<link rel="stylesheet" href="/assets/css/' . WEB_THEME  . '.css"/>'
-?>
+    <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
 </head>
 <body>
 

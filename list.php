@@ -12,8 +12,6 @@ include("bdd.php");
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="/assets/css/list.css"/>
-
 </head>
 <body><a href=".">Go Back !</a>
 
