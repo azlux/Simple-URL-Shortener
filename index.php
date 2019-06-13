@@ -35,6 +35,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <title>Shortener</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="/assets/css/common.css"/>
 </head>
 <body>
     <div class="banner">
@@ -80,11 +81,17 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
         <span>Get free cookie!</span>
     </a>
     <div id="content">
-        <form class="form shortener" name="url_form" action="shorten.php" method="post">
-            <input type="text" name="url" autocomplete="off" placeholder="Link to shorten" />
-            <input type="text" name="comment" id="comment" maxlength="30" autocomplete="off" placeholder="Optional comment" />
-            <input class="button" type="submit" value="Shorten" class="button"/>
-        </form>
+<form name="url_form" action="shorten.php" method="post">
+    <div class="form-group">
+        <label class="form-label" for="shorten_form_url">Link to shorten</label>
+        <input class="form-input" type="text" id="shorten_form_url" name="url"/>
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="shorten_form_comment">Optional comment</label>
+        <input class="form-input" type="text" id="shorten_form_comment" name="comment" maxlength="30">
+    </div>
+    <input type="submit" value="Shorten" class="btn btn-primary"/>
+</form>
         <a class="button username" href="/list.php" >List of shortened links</a>
         <a class="button bookmark" href="<?php echo $code_js ?>" onclick="event.preventDefault();"/>Shortcut</a>
         
