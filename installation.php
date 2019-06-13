@@ -13,8 +13,7 @@ if ($connexion->errorCode() == 0) {
       `views` int(11) DEFAULT NULL,
       `username` varchar(25) DEFAULT NULL,
       `date` datetime NOT NULL,
-      PRIMARY KEY (`short`),
-      KEY `id_user` (`username`)
+      PRIMARY KEY (`short`)
       );
 
     CREATE TABLE `users` (
