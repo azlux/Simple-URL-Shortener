@@ -15,7 +15,7 @@ include("bdd.php");
 </head>
 <body>
 
-<a class="button" href=".">Go Back !</a> <!-- je vais le mettre dans le header de la page avec login/logout/signin
+<a class="button" href=".">Go Back !</a> <!-- je vais le mettre dans le header de la page avec login/logout/signin-->
 
 <?php
 header("Cache-Control: no-cache, must-revalidate");
@@ -61,10 +61,10 @@ while ($row = $list->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr><td><a href=\"./" . $row['short'] . "\" >" . $row['short'] . "</a></td>";
     echo "<td><div class=\"comment\">" . $row['comment'] . "</div><a href=\"./" . $row['short'] . "\" >" . $row['url'] . "</a></td>";
     if ($username = 'UNKNOWN') {
-        echo "<td>" . $row['views'] . "<a href=./list.php?UNKNOWN&delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
+        echo "<td>" . $row['views'] . "<a href=list.php?UNKNOWN&delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
     }
     else {
-        echo "<td>" . $row['views'] . "<a href=./list.php?delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
+        echo "<td>" . $row['views'] . "<a href=list.php?delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
     }
 }
 $list->closeCursor();
@@ -83,7 +83,7 @@ echo '</table>
             <label>keep bookmarks :<input type="checkbox" name="keepBM" value="true" /> </label>
             <input type="submit" value="Delete" />
         </form>
-        <a class="button" href="' . DEFAULT_URL . '/list.php?UNKNOWN">Get link from no connected people</a>
+        <a class="button" href="list.php?UNKNOWN">Get link from no connected people</a>
     </div>'
     ;
 ?>

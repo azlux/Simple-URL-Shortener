@@ -34,8 +34,8 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
-    <link rel="stylesheet" href="/assets/css/common.css"/>
+    <link rel="stylesheet" href="assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
 <body>
     <div class="banner">
@@ -64,7 +64,7 @@ if (empty($username)) { // Si l'utilisateur n'est pas connecté
 }
 else {
     echo '<h3>Connected as ' . $username . '</h3>';
-    echo '<a class="button logout"href="<?php echo DEFAULT_URL?>/login.php?logout">Logout</a>';
+    echo '<a class="button logout"href="login.php?logout">Logout</a>';
 }
 
 if (PUBLIC_INSTANCE == 'true'){
@@ -107,9 +107,10 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
                     Shortener by Azlux
                 </a>
             </div>
-            <a href="<?php echo $code_js ?>" class="btn" onclick="event.preventDefault();"/>Bookmark</a>
+	    <a href="<?php echo $code_js ?>" class="btn tooltip" data-tooltip="You can add this link as bookmark
+(click and drop into your bookmark toolbar).
+After that, you can click to short the current url!" onclick="event.preventDefault();"/>Bookmark</a>
         </div>
     </div>
-    <div id="instructions">You can add this link as bookmark (click and drop into your bookmark toolbar). After that, you can click on the bookmark to add the current url page directly into this shortener.<h3>Enjoy the feature !</h3></div>
 </body>
 </html>
