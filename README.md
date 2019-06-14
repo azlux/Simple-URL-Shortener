@@ -1,3 +1,7 @@
+# WARNING
+Work in progress. We rewrite the UI, fix bug and other stuff during this week.
+Please wait few days before using this repo.
+
 # simple-shortener by Azlux
 
 Simple shortener working with MySQL or SQLite database in PHP.
