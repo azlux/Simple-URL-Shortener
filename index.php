@@ -115,7 +115,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
             <label class="form-label" for="register_email">Email</label>
             <input class="form-input" type="email" id="register_email" name="email"/>
         </div>
-        <input class="btn float-right" class="btn float-right" value="SignIn" />
+        <input class="btn float-right" class="btn float-right" type="submit" value="SignIn" />
         </form>
       </div>
     </div>
