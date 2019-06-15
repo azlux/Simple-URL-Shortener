@@ -57,6 +57,14 @@
     align-self: center;
 }
 
+tr, td{
+    text-align: center;
+}
+
+body > *:not(:last-child) {
+    margin-bottom: 50px;
+}
+
 /* banner */
 
 #banner{
@@ -80,6 +88,13 @@
 
 #content > form > *:not(:last-child){
     margin-bottom: 15px;
+}
+
+/* list */
+
+#list{
+    max-width: 800px;
+    margin: auto;
 }
 
 /* credits */

@@ -90,12 +90,14 @@ else { // POST if webpage used
     }
 
     $url = $_POST['url'];
+    echo $_POST['comment'];
     if (empty($_POST['comment'])) {
         $comment = NULL;
     }
     else {
-        $comment = $_GET['comment'];
+        $comment = $_POST['comment'];
     }
+    echo $comment;
     $url_shortened = short($connexion, $username, $url, $comment);
 }
 ?>
