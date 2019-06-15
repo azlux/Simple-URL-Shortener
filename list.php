@@ -14,6 +14,8 @@ include("bdd.php");
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
 <body>
 
@@ -48,26 +50,50 @@ elseif (!empty($_GET['deleteRange']) ){
     }
     $req->closeCursor();
 }
-echo '
-    <table>
+?>
+<table class="table table-striped table-hover">
+    <thead>
         <tr>
             <th>Short link</th>
-            <th class="center-div" style="width: 500px;">Original link</th>
+            <th>Original link</th>
             <th>Total views</th>
-        </tr>';
-        
+        </tr>
+    </thead>
+<tbody>
+<?php
+
 $list = $connexion->prepare('SELECT * FROM shortener WHERE username= ? ORDER BY date DESC;');
 $list->execute(array($username));
 
 while ($row = $list->fetch(PDO::FETCH_ASSOC)) {
-    echo "<tr><td><a href=\"./" . $row['short'] . "\" >" . $row['short'] . "</a></td>";
-    echo "<td><div class=\"comment\">" . $row['comment'] . "</div><a href=\"./" . $row['short'] . "\" >" . $row['url'] . "</a></td>";
-    if ($username = 'UNKNOWN') {
-        echo "<td>" . $row['views'] . "<a href=list.php?UNKNOWN&delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
-    }
-    else {
-        echo "<td>" . $row['views'] . "<a href=list.php?delete=" . $row['short'] . " class=\"delete\" ><img src=\"/assets/img/delete-icon.png\" /></td></tr>";
-    }
+    $short = $row['short'];
+    $views = $row['views'];
+    $comment = $row['comment'];
+    $url = $row['url'];
+
+    $linkUrl = sprintf("./%s", $short);
+    $deleteUrl = sprintf("list.php?%sdelete=%s", $username = 'UNKNOWN' ? "UNKNOWN&" : "", $short)
+?>
+    <tr>
+        <td>
+            <a href="<?php echo $linkUrl ?>">
+                <?php echo $short; ?>
+            </a>
+        </td>
+        <td>
+            <div><?php echo $comment; ?></div>
+            <a href="<?php echo $linkUrl; ?>">
+                <?php echo $url; ?>
+            </a>
+        </td>
+        <td>
+            <span><?php echo $views; ?></span>
+            <a href="<?php echo $deleteUrl; ?>" class="delete">
+                <img src="/assets/img/delete-icon.png"/>
+            </a>
+        </td>
+    </tr>
+<?php
 }
 $list->closeCursor();
 if ($username = 'UNKNOWN') {
@@ -76,17 +102,16 @@ if ($username = 'UNKNOWN') {
 else {
     $action='list.php';
 }
-
-echo '</table>
+?>
+    </tbody>
+</table>
     <div class="form action"> 
-        <form class="form" action="'. $action .'" method="get" id="formDelete" >
+        <form class="form" action="<?php echo $action; ?>" method="get" id="formDelete" >
             <label>Remove links older than
             <input type="number" name="deleteRange" value="30" />days</label><br />
             <label>keep bookmarks :<input type="checkbox" name="keepBM" value="true" /> </label>
             <input type="submit" value="Delete" />
         </form>
         <a class="button" href="list.php?UNKNOWN">Get link from no connected people</a>
-    </div>'
-    ;
-?>
+    </div>
 </body>
