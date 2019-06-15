@@ -72,7 +72,7 @@ while ($row = $list->fetch(PDO::FETCH_ASSOC)) {
     $url = $row['url'];
 
     $linkUrl = sprintf("./%s", $short);
-    $deleteUrl = sprintf("list.php?%sdelete=%s", $username = 'UNKNOWN' ? "UNKNOWN&" : "", $short)
+    $deleteUrl = sprintf("list.php?%sdelete=%s", $username == 'UNKNOWN' ? "UNKNOWN&" : "", $short);
 ?>
     <tr>
         <td>
