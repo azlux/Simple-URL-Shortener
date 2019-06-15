@@ -42,6 +42,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <?php
         if(!empty($_SESSION['username'])){
             $username = $_SESSION['username'];
+            $token = $_SESSION['token'];
     ?>
         <h3>Connected as <?php echo $username ?></h3>
         <a class="btn" href="login.php?logout">Logout</a>
@@ -121,19 +122,15 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
   </div>
 </div>
 <?php
-if (PUBLIC_INSTANCE == 'true'){
+if (PUBLIC_INSTANCE == 'true' and empty($username)){
 	$username = 'UNKNOWN';
+    $token = '';
 }
 
 
 // Main page
-$code_js ="";
-if (!empty($_SESSION['token'])) {
-    $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $_SESSION['token'] . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
-}
-elseif (PUBLIC_INSTANCE == 'true'){
-    $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
-}
+$code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $_SESSION['token'] . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
+
 ?>
     <a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
         <span>Fork me on GitHub!</span>
