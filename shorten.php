@@ -70,6 +70,19 @@ else { // POST if webpage used
         header('Location: ' . DEFAULT_URL);
         exit();
     }
+    if (!empty($_POST['is_short_free'])) {
+         header('Content-type: application/json');
+        $verify_url = $connexion->prepare("SELECT * FROM shortener WHERE short=?");
+        $verify_url->execute(array($_POST(['short_free'])));
+        if (count($verify_url->fetchAll((PDO::FETCH_ASSOC))) == 0) {
+            echo json_encode(array('ok'=>true));
+            exit;
+        }
+        else {
+            echo json_encode(array('ok'=>false));
+            exit;
+        }
+    }
 
     if (empty($_POST['url'])) { // nothing to short
         header('Location: ' . DEFAULT_URL);

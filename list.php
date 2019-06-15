@@ -1,6 +1,8 @@
 <?php
 session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_httponly' => true,'cookie_secure' => true]);
-$username = $_SESSION['username'];
+if (!empty($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+}
 if (isset($_GET['UNKNOWN']) and ($_SESSION['admin'] == '1')) {
     $username = 'UNKNOWN';
 }

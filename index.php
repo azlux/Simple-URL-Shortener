@@ -41,7 +41,9 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <div class="banner">
 
 <?php
-$username = $_SESSION['username'];
+if (!empty($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+}
 
 if (empty($username)) { // Si l'utilisateur n'est pas connecté
     echo '
@@ -72,8 +74,14 @@ if (PUBLIC_INSTANCE == 'true'){
 }
 
 // Main page
+$code_js ="";
+if (!empty($_SESSION['token'])) {
+    $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $_SESSION['token'] . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
+}
+elseif (PUBLIC_INSTANCE == 'true'){
+    $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
+}
 
-$code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $_SESSION['token'] . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
 ?>
     </div>
     <a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
