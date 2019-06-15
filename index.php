@@ -136,6 +136,31 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
         <span>Fork me on GitHub!</span>
         <span>Get free cookie!</span>
     </a>
+    <script>
+        async function checkCommentAvailable(e){
+            const {value} = e.target
+            if(value === ""){
+                return disableCommentField(false)
+            }
+            const result = await fetch(`/shorten.php?url=${value}`)
+            if(!result.ok){
+                return disableCommentField(true)
+            }
+            try{
+                const body = await result.json()
+                console.log(body)
+            }
+            catch(e){
+                console.error(e)
+                return disableCommentField(true)
+            }
+        }
+
+        function disableCommentField(isDisabled){
+            const i = document.querySelector('input[name=comment]')
+            i.setCustomValidity(isDisabled ? "This comment allready exists." : '')
+        }
+    </script>
     <div id="content">
         <form name="url_form" action="shorten.php" method="post">
             <div class="form-group">
@@ -149,7 +174,7 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="shorten_form_comment">Optional comment</label>
-                    <input class="form-input" type="text" id="shorten_form_comment" name="comment" maxlength="30">
+                    <input class="form-input" type="text" id="shorten_form_comment" name="comment" onkeypress="checkCommentAvailable(event)" maxlength="30">
                 </div>
                 </div>
             <div>
