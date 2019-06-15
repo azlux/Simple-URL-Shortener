@@ -38,40 +38,93 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
 <body>
-    <div class="banner">
-
-<?php
-if (!empty($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-}
-
-if (empty($username)) { // Si l'utilisateur n'est pas connecté
-    echo '
-    <div class="form login">
-    <form action="login.php" method="POST" id="login">
-      <input type="text" name="username" placeholder="UserName" autofocus />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="submit" value="login" />
-    </form></div>';
-    if (ALLOW_SIGNIN == 'true'){
-        echo '
-        <div class="form signin">
-        <form action="login.php?signin" method="POST" id="signin">
-          <input type="text" name="username" placeholder="UserName" />
-          <input type="password" name="password" placeholder="Password" />
-          <input type="email" name="email" placeholder="Email" />
-          <input type="submit" value="SignIn" />
-        </form></div>';
+<div id="banner" class="flex flex-space">
+    <?php
+        if(!empty($_SESSION['username'])){
+            $username = $_SESSION['username'];
+    ?>
+        <h3>Connected as <?php echo $username ?></h3>
+        <a class="btn" href="login.php?logout">Logout</a>
+    <?php
+        }
+        else{
+    ?>
+        <button class="btn" onClick="openModal('modal-login')">Login</button>
+        <?php
+            if (ALLOW_SIGNIN == 'true'){
+        ?>
+            <button class="btn" onClick="openModal('modal-signin')">Sign In</button>
+        <?php
+            }
+        }
+    ?>
+</div>
+<script>
+    function closeAllModals(){
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'))
     }
-}
-else {
-    echo '<h3>Connected as ' . $username . '</h3>';
-    echo '<a class="button logout"href="login.php?logout">Logout</a>';
-}
 
+    function openModal(modalId){
+        document.getElementById(modalId).classList.add('active')
+    }
+</script>
+<div class="modal modal-sm" id="modal-login">
+  <a class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+      <div class="modal-title h5">Login Form</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <form action="login.php" method="POST" id="login">
+        <div class="form-group">
+            <label class="form-label" for="login_username">UserName</label>
+            <input class="form-input" type="text" id="login_username" name="username"/>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="login_password">Password</label>
+            <input class="form-input" type="password" id="login_password" name="password"/>
+        </div>
+        <input class="btn float-right" type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal modal-sm" id="modal-signin">
+  <a class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+      <div class="modal-title h5">Register Form</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <form action="login.php?signin" method="POST" id="signin">
+        <div class="form-group">
+            <label class="form-label" for="register_username">UserName</label>
+            <input class="form-input" type="text" id="register_username" name="username"/>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="register_password">Password</label>
+            <input class="form-input" type="text" id="register_password" name="username"/>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="register_email">Email</label>
+            <input class="form-input" type="email" id="register_email" name="email"/>
+        </div>
+        <input class="btn float-right" class="btn float-right" value="SignIn" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
 if (PUBLIC_INSTANCE == 'true'){
 	$username = 'UNKNOWN';
 }
+
 
 // Main page
 $code_js ="";
@@ -81,9 +134,7 @@ if (!empty($_SESSION['token'])) {
 elseif (PUBLIC_INSTANCE == 'true'){
     $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
 }
-
 ?>
-    </div>
     <a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
         <span>Fork me on GitHub!</span>
         <span>Get free cookie!</span>
@@ -120,5 +171,8 @@ elseif (PUBLIC_INSTANCE == 'true'){
 After that, you can click to short the current url!" onclick="event.preventDefault();"/>Bookmark</a>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', closeAllModals))
+    </script>
 </body>
 </html>

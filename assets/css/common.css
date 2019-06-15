@@ -57,6 +57,12 @@
     align-self: center;
 }
 
+/* banner */
+
+#banner{
+    justify-content: flex-end;
+}
+
 /* index content div */
 
 #content{
