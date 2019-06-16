@@ -80,7 +80,12 @@ if (!empty($_GET['url'])) { // GET if bookmark used or API (with token if connec
 }
 else { // POST if webpage used
     if (empty($username)) { // Not connect and not a public shortener
-        header('Location: ' . DEFAULT_URL);
+        if (!empty($_POST['is_short_free'])) {
+            http_response_code(403); // 403 for the API is better than redirect
+        }
+        else {
+            header('Location: ' . DEFAULT_URL);
+        }
         exit();
     }
     if (!empty($_POST['is_short_free'])) {
