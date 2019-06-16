@@ -137,28 +137,28 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
         <span>Get free cookie!</span>
     </a>
     <script>
-        async function checkCommentAvailable(e){
+        async function checkCustomUrlAvailable(e){
             const {value} = e.target
             if(value === ""){
-                return disableCommentField(false)
+                return disableCustomUrlField(false)
             }
-            const result = await fetch(`/shorten.php?url=${value}`)
+            const result = await fetch('/shorten.php', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `is_short_free=${value}`})
             if(!result.ok){
-                return disableCommentField(true)
+                return disableCustomUrlField(true)
             }
             try{
-                const body = await result.json()
-                console.log(body)
+                const {ok} = await result.json()
+                disableCustomUrlField(!ok)
             }
             catch(e){
                 console.error(e)
-                return disableCommentField(true)
+                return disableCustomUrlField(true)
             }
         }
 
-        function disableCommentField(isDisabled){
-            const i = document.querySelector('input[name=comment]')
-            i.setCustomValidity(isDisabled ? "This comment allready exists." : '')
+        function disableCustomUrlField(isDisabled){
+            const i = document.querySelector('input[name=custom]')
+            i.setCustomValidity(isDisabled ? "This custom url allready exists." : '')
         }
     </script>
     <div id="content">
@@ -170,11 +170,11 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
             <div class="flex flex-space">
                 <div class="form-group">
                     <label class="form-label" for="shorten_form_custom">Optional short url</label>
-                    <input class="form-input" type="text" id="shorten_form_custom" name="custom" maxlength="30">
+                    <input class="form-input" type="text" id="shorten_form_custom" name="custom" onkeyup="checkCustomUrlAvailable(event)" maxlength="30">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="shorten_form_comment">Optional comment</label>
-                    <input class="form-input" type="text" id="shorten_form_comment" name="comment" onkeypress="checkCommentAvailable(event)" maxlength="30">
+                    <input class="form-input" type="text" id="shorten_form_comment" name="comment" maxlength="30">
                 </div>
                 </div>
             <div>

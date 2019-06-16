@@ -1,4 +1,5 @@
 <?php
+
 include("bdd.php");
 
 if (PUBLIC_INSTANCE == 'true'){
@@ -83,9 +84,9 @@ else { // POST if webpage used
         exit();
     }
     if (!empty($_POST['is_short_free'])) {
-         header('Content-type: application/json');
         $verify_url = $connexion->prepare("SELECT * FROM shortener WHERE short=?");
-        $verify_url->execute(array($_POST(['is_short_free'])));
+        $verify_url->execute(array($_POST['is_short_free']));
+        header('Content-type: application/json');
         if (count($verify_url->fetchAll((PDO::FETCH_ASSOC))) == 0) {
             echo json_encode(array('ok'=>true));
             exit;
