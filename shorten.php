@@ -8,9 +8,21 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
 $username = $_SESSION['username'];
 
 
-function short($connexion, $username, $url, $comment) {
+function short($connexion, $username, $url, $custom, $comment) {
     if (preg_match("_(^|[\s.:;?\-\]<\(])(https?://[-\w;/?:@&=+$\|\_.!~*\|'()\[\]%#,?]+[\w/#](\(\))?)(?=$|[\s',\|\(\).:;?\-\[\]>\)])_i", $url)) {
         $unic = 0;
+        
+        # Check if custom already exist
+        if (!empty($custom)) {
+            $verify_url = $connexion->prepare("SELECT * FROM shortener WHERE short=?");
+            $verify_url->execute(array($custom));
+            
+            if (count($verify_url->fetchAll((PDO::FETCH_ASSOC))) == 0) {
+                $unic = 1;
+                $url_shortened = $custom;
+            }
+        }
+        
         while ($unic == 0) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $url_shortened = '';
@@ -55,11 +67,11 @@ if (!empty($_GET['url'])) { // GET if bookmark used or API (with token if connec
         $req->execute(array($_GET['token']));
         $res_user = $req->fetch(PDO::FETCH_ASSOC);
         if ($res_user and !empty($_GET['url'])) { //token is valid
-           $url_shortened = short($connexion, $res_user['username'], $url, $comment);
+           $url_shortened = short($connexion, $res_user['username'], $url, NULL, $comment);
         }
     }
     elseif (PUBLIC_INSTANCE == 'true') {
-        $url_shortened = short($connexion, $username, $url, $comment);
+        $url_shortened = short($connexion, $username, $url, NULL, $comment);
     }
     else {
         header('Location: ' . DEFAULT_URL);
@@ -90,15 +102,9 @@ else { // POST if webpage used
     }
 
     $url = $_POST['url'];
-    echo $_POST['comment'];
-    if (empty($_POST['comment'])) {
-        $comment = NULL;
-    }
-    else {
-        $comment = $_POST['comment'];
-    }
-    echo $comment;
-    $url_shortened = short($connexion, $username, $url, $comment);
+    $comment = (!empty($_POST['comment'])) ? $_POST['comment'] : NULL;
+    $custom = (!empty($_POST['custom'])) ? $_POST['custom'] : NULL;
+    $url_shortened = short($connexion, $username, $url, $custom, $comment);
 }
 ?>
     <!DOCTYPE html>
