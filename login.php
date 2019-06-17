@@ -23,26 +23,34 @@ if (isset($_GET['signin']) and !empty($_POST['username']) and !empty($_POST['pas
         echo 'ACCOUNT CREATED.';
     }
     header("refresh:5;url=" . DEFAULT_URL);
+    exit;
 }
+elseif (!empty($_POST['username']) AND !empty($_POST['password'])) {
+    $req = $connexion->prepare('SELECT * FROM users where username=?');
+    $req->execute([$_POST['username']]);
+    $user = $req->fetch();
 
-
-if (empty($_POST['username']) OR empty($_POST['password'])) {
-    header('Location: ' . DEFAULT_URL);
-    exit();
-}
-
-
-$req = $connexion->prepare('SELECT * FROM users where username=?');
-$req->execute([$_POST['username']]);
-$user = $req->fetch();
-
-if ($user && password_verify($_POST['password'], $user['password'])) {
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['token'] = $user['token'];
-    $_SESSION['admin'] = $user['admin'];
+    if ($user && password_verify($_POST['password'], $user['password'])) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['token'] = $user['token'];
+        $_SESSION['admin'] = $user['admin'];
     
-    header('Location: ' . DEFAULT_URL);
+        header('Location: ' . DEFAULT_URL);
+    }
+    else {
+        http_response_code(403);
+    }
+    exit;
 }
-else {
-    http_response_code(403);
+
+// Authenticated part
+
+if(!empty($_SESSION['username'])) {
+    if (isset($_GET['changepassword']) AND !empty($_POST['old_password']) AND !empty($_POST['new_password'])) {
+        $req = $connexion->prepare('UPDATE users SET password = ? WHERE username = ? AND password = ?');
+        $req->execute(array($_POST['new_password'], $_SESSION['username'], $_POST['old_password']));
+        echo "PASSWORD UPDATED";
+        header("refresh:5;url=" . DEFAULT_URL);
+    }
 }
+header('Location: ' . DEFAULT_URL);

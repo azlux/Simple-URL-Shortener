@@ -35,6 +35,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <title>Shortener</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="assets/css/icons.min.css"/>
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
 <body>
@@ -44,8 +45,20 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
             $username = $_SESSION['username'];
             $token = $_SESSION['token'];
     ?>
-        <h3>Connected as <?php echo $username ?></h3>
-        <a class="btn" href="login.php?logout">Logout</a>
+    <div class="dropdown">
+	<a class="btn btn-link dropdown-toggle" tabindex="0">Connected as <?php echo $username ?>
+	    <i class="icon icon-caret"></i>
+	</a>
+	<ul class="menu">
+            <li class="menu-item">
+                <button class="btn" onClick="openModal('modal-change-pwd')">Change Password</a>
+            </li>
+	    <li class="menu-item">
+		<a class="btn" href="login.php?logout">Logout</a>
+	    </li>
+	</ul>
+    </div>
+
     <?php
         }
         else{
@@ -115,15 +128,43 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
             <label class="form-label" for="register_email">Email</label>
             <input class="form-input" type="email" id="register_email" name="email"/>
         </div>
-        <input class="btn float-right" class="btn float-right" type="submit" value="SignIn" />
+        <input class="btn float-right" type="submit" value="SignIn" />
         </form>
       </div>
     </div>
   </div>
 </div>
+<div class="modal modal-sm" id="modal-change-pwd">
+  <a class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+      <div class="modal-title h5">Change Password Form</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <form action="login.php?changepassword" method="POST" id="login">
+        <div class="form-group">
+            <label class="form-label" for="old_password">Old Password</label>
+            <input class="form-input" type="password" id="old_password" name="old_password"/>
+        </div>
+		<div class="form-group">
+            <label class="form-label" for="new_password">New Password</label>
+            <input class="form-input" type="password" id="new_password" name="new_password"/>
+        </div>
+        <input class="btn float-right" type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 if (PUBLIC_INSTANCE == 'true' and empty($username)){
-	$username = 'UNKNOWN';
+    $username = 'UNKNOWN';
+    $token = '';
+}
+if (PUBLIC_INSTANCE != 'true' and empty($username)) {
     $token = '';
 }
 
