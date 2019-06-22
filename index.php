@@ -34,7 +34,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="assets/css/spectre-<?php echo WEB_THEME ?>.css"/>
     <link rel="stylesheet" href="assets/css/icons.min.css"/>
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
@@ -46,15 +46,15 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
             $token = $_SESSION['token'];
     ?>
     <div class="dropdown">
-	<a class="btn btn-link dropdown-toggle" tabindex="0">Connected as <?php echo $username ?>
+	<button class="btn btn-link dropdown-toggle" tabindex="0">Connected as <?php echo $username ?>
 	    <i class="icon icon-caret"></i>
-	</a>
+	</button>
 	<ul class="menu">
-            <li class="menu-item">
-                <button class="btn" onClick="openModal('modal-change-pwd')">Change Password</a>
-            </li>
+        <li class="menu-item">
+            <button class="btn" onClick="openModal('modal-change-pwd')">Change Password</a>
+        </li>
 	    <li class="menu-item">
-		<a class="btn" href="login.php?logout">Logout</a>
+            <button class="btn" onclick="window.location.href = 'login.php?logout'">Logout</button>
 	    </li>
 	</ul>
     </div>
@@ -220,7 +220,7 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
                 </div>
             <div>
                 <input type="submit" value="Shorten" class="btn btn-primary"/>
-                <a href="/list.php" class="float-right btn">List of shortened links</a>
+                <button class="btn float-right" onclick="event.preventDefault(); window.location.href = '/list.php'">List of shortened links</button>
             </div>
         </form>
         <div class="flex">

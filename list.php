@@ -14,14 +14,14 @@ include("bdd.php");
 <head>
     <title>Shortener</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="assets/css/spectre.min.css"/>
+    <link rel="stylesheet" href="assets/css/spectre-<?php echo WEB_THEME ?>.css"/>
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
 <body class="<?php echo WEB_THEME; ?>">
 
     <!-- je vais le mettre dans le header de la page avec login/logout/signin-->
-    <a class="btn" href=".">Go Back !</a>
-    <a class="btn" href="list.php?UNKNOWN">Get link from no connected people</a>
+    <button class="btn" onclick="window.location.href = '.'">Go Back !</button>
+    <button class="btn" onclick="window.location.href = 'list.php?UNKNOWN'">Get link from no connected people</button>
 
     <?php
     header("Cache-Control: no-cache, must-revalidate");
@@ -59,6 +59,7 @@ include("bdd.php");
                 <th>Short link</th>
                 <th>Original link</th>
                 <th>Total views</th>
+                <th></th>
             </tr>
         </thead>
     <tbody>
@@ -89,7 +90,9 @@ include("bdd.php");
             </a>
         </td>
         <td>
-            <span><?php echo $views; ?></span>
+            <?php echo $views; ?>
+        </td>
+        <td>
             <a href="<?php echo $deleteUrl; ?>" class="delete">
                 <img src="/assets/img/delete-icon.png"/>
             </a>
