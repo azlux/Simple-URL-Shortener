@@ -235,7 +235,10 @@ After that, you can click to short the current url!" onclick="event.preventDefau
         </div>
     </div>
     <script>
-        document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', closeAllModals))
+        [
+            ...document.querySelectorAll('.modal-overlay'),
+            ...document.querySelectorAll('.modal .btn-clear')
+        ].forEach(o => o.addEventListener('click', closeAllModals))
     </script>
 </body>
 </html>
