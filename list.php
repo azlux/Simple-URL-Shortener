@@ -17,7 +17,7 @@ include("bdd.php");
     <link rel="stylesheet" href="assets/css/spectre.min.css"/>
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
-<body>
+<body class="<?php echo WEB_THEME; ?>">
 
     <!-- je vais le mettre dans le header de la page avec login/logout/signin-->
     <a class="btn" href=".">Go Back !</a>
@@ -59,7 +59,6 @@ include("bdd.php");
                 <th>Short link</th>
                 <th>Original link</th>
                 <th>Total views</th>
-                <th></th>
             </tr>
         </thead>
     <tbody>

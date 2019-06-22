@@ -41,6 +41,24 @@
 
 /* common classes */
 
+html, body{
+    height: 100%;
+}
+
+body{
+    padding: 15px;
+}
+
+body:not(.light){
+    color: #cbcbcb;
+    background-image: url("/assets/img/black_bg.png");
+}
+
+body.light{
+    color: #1a1a1a;
+    background-image: url("/assets/img/white_bg.png");
+}
+
 .flex{
     display: flex;
 }

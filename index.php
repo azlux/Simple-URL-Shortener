@@ -38,7 +38,7 @@ session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_ht
     <link rel="stylesheet" href="assets/css/icons.min.css"/>
     <link rel="stylesheet" href="assets/css/common.css"/>
 </head>
-<body>
+<body class="<?php echo WEB_THEME; ?>">
 <div id="banner" class="flex flex-space">
     <?php
         if(!empty($_SESSION['username'])){
