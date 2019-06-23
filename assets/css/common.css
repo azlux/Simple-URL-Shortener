@@ -51,7 +51,7 @@ body{
 
 body:not(.light){
     color: #cbcbcb;
-    background-image: url("/assets/img/black_bg.png");
+    background: linear-gradient( rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.5) ), url("/assets/img/black_bg.png");
 }
 
 body.light{
@@ -64,7 +64,7 @@ body.light{
 }
 
 .flex-grow{
-    flex-grow: 1
+    flex-grow: 1;
 }
 
 .flex-space > *:not(:last-child){
