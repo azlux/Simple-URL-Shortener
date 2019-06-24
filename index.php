@@ -28,7 +28,10 @@ if (isset($_GET['site']) && !empty($_GET['site'])) { //url shortened
 }
 
 session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_httponly' => true, 'cookie_secure' => true]);
-include 'inc/header.php';
+if(!empty($_SESSION['username'])){
+    $username = $_SESSION['username'];
+    $token = $_SESSION['token'];
+}
 if (PUBLIC_INSTANCE == 'true' and empty($username)){
     $username = 'UNKNOWN';
     $token = '';
@@ -37,6 +40,7 @@ if (PUBLIC_INSTANCE != 'true' and empty($username)) {
     $token = '';
 }
 
+include 'inc/header.php';
 
 // Main page
 $code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $token . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';

@@ -1,13 +1,15 @@
 <?php
 
 include 'inc/bdd.php';
+session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_httponly' => true,'cookie_secure' => true]);
 
-if (PUBLIC_INSTANCE == 'true'){
+if(!empty($_SESSION['username'])){
+    $username = $_SESSION['username'];
+    $token = $_SESSION['token'];
+}
+if (PUBLIC_INSTANCE == 'true' and empty($username)){
     $username = 'UNKNOWN';
 }
-session_start(['cookie_lifetime' => '1728000', 'name' => 'shortener', 'cookie_httponly' => true,'cookie_secure' => true]);
-$username = $_SESSION['username'];
-
 
 function short($connexion, $username, $url, $custom, $comment) {
     if (preg_match("_(^|[\s.:;?\-\]<\(])(https?://[-\w;/?:@&=+$\|\_.!~*\|'()\[\]%#,?]+[\w/#](\(\))?)(?=$|[\s',\|\(\).:;?\-\[\]>\)])_i", $url)) {

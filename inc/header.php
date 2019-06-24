@@ -11,8 +11,6 @@
 <div id="banner" class="flex flex-space">
     <?php
         if(!empty($_SESSION['username'])){
-            $username = $_SESSION['username'];
-            $token = $_SESSION['token'];
     ?>
     <div class="dropdown">
         <button class="btn btn-link dropdown-toggle" tabindex="0">Connected as <?php echo $username ?>
