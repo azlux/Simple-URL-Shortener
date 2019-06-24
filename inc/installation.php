@@ -1,5 +1,5 @@
 <?php
-include("inc/bdd.php");
+include("bdd.php");
 if (isset($_GET['ok'])) {
     echo "<h3>The installation is finish. You need to delete the file  \"installation.php\"  now !!! for safety (check if it work before that :)</h3>";
     exit;

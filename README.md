@@ -1,7 +1,3 @@
-# WARNING
-Work in progress. We rewrite the UI, fix bug and other stuff during this week.
-Please wait few days before using this repo.
-
 # simple-shortener by Azlux
 
 Simple shortener working with MySQL or SQLite database in PHP.
@@ -15,12 +11,16 @@ Writed to work into subfolder. (don't need to be at the root)
 
 ## Installation :
 - clone this project
-- Copy `config.example.php` to `config.php`
+- Copy `inc/config.example.php` to `inc/config.php`
 - Set you config file
 - Call `installation.php` to setup the database
 - delete `installation.php`
 - Create a user, the first one will be an admin (allow you to see no connected shorted links)
 
+## Warning
+For security reasons, the cookies are set on *https* only (cookie_secure mode)
+Authentification will not for if your website isn't on HTTPS.
+For testing purpose, you need an browser addons to disable this security [like this one on Firefox](https://addons.mozilla.org/en-US/firefox/addon/set-cookie-no-secure-httponly/).
 
 ### Nginx configuration :
 
@@ -51,7 +51,7 @@ location ~* \.(sqlite3|ht)$ {
 ### Apache configuration (.htaccess) :
 (delete the file if you are on nginx)
 
-
 ### Credit :<p>
 Based on code provided by [SilouFR](https://github.com/SilouFr)
-
+Dev PHP : [Azlux](https://github.com/azlux)
+Design  : [Spokeek](https://github.com/Spokeek)

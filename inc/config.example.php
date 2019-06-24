@@ -14,6 +14,6 @@ define('DEFAULT_URL', 'https://azlux.fr'); // omit the trailing slash!
 define('URL_SIZE', 5); // The lenght of your short created links
 define('WEB_THEME', 'dark'); // dark or light
 define('PUBLIC_INSTANCE', 'false'); // true to allow no connected people to create short url. The admin can see no connected short URL created.
-define('ALLOW_SIGNIN', 'false'); // true to allow people to signin on there own
+define('ALLOW_SIGNIN', 'false'); // true to allow people to signin on there own, the first user created will be an admin.
 
 ?>

@@ -96,7 +96,7 @@ body > *:not(:last-child) {
     margin: 50px auto 0 auto;
     text-align: left;
     padding: 20px;
-    border: 3px solid #2a85b3;
+    border: 2px solid #909090;
     border-radius: 20px;
 }
 
@@ -116,11 +116,11 @@ body > *:not(:last-child) {
 }
 
 /* credits */
-
-#credits{
-    font-size: 20px;
-    color: #1A9FA2;
+#credits {
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+}
+footer {
+    color: #878787;
+    position: absolute;
+    bottom: 8px;
 }

@@ -1,6 +1,6 @@
 <?php
 
-include("bdd.php");
+include 'inc/bdd.php';
 
 if (PUBLIC_INSTANCE == 'true'){
     $username = 'UNKNOWN';
@@ -112,17 +112,7 @@ else { // POST if webpage used
     $custom = (!empty($_POST['custom'])) ? $_POST['custom'] : NULL;
     $url_shortened = short($connexion, $username, $url, $custom, $comment);
 }
-?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Shortener</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="/assets/css/spectre.min.css"/>
-        <link rel="stylesheet" href="/assets/css/common.css"/>
-    </head>
-    <body>
-<?php 
+include 'inc/header.php';
 echo '
     <div id="content">
         <div id="site">
@@ -140,5 +130,5 @@ echo '
             window.prompt("Copy to clipboard: Ctrl+C, Enter","' . DEFAULT_URL . '/' . $url_shortened . '");
         </script>
     </div>';
-
+include 'inc/footer.php';
 ?>

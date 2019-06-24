@@ -1,6 +1,6 @@
 <?php
 
-include("bdd.php");
+include("inc/bdd.php");
 session_start(['cookie_lifetime' => 1728000,'name' => 'shortener', 'cookie_httponly' => true,'cookie_secure' => true]);
 
 if (isset($_GET['logout'])) {

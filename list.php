@@ -6,53 +6,37 @@ if (!empty($_SESSION['username'])) {
 if (isset($_GET['UNKNOWN']) and ($_SESSION['admin'] == '1')) {
     $username = 'UNKNOWN';
 }
-include("bdd.php");
+include 'inc/bdd.php';
+header("Cache-Control: no-cache, must-revalidate");
+$root_url = $_SERVER['REQUEST_URI'];
+
+if (empty($_SESSION['username'])) {
+    header('Location: ' . DEFAULT_URL);
+    exit();
+}
+    
+if (isset($_GET['delete']) && $_GET['delete'] != "") {
+    $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND short = ?');
+    $req->execute(array($username, $_GET['delete']));
+    $req->closeCursor();
+}
+elseif (!empty($_GET['deleteRange']) ){
+    $date = new DateTime("UTC");
+    $date->modify('-'.$_GET['deleteRange'].' day');
+    $date = $date->format('Y-m-d H:i:s');
+    if (!empty($_GET['keepBM']) && $_GET['keepBM'] == "true") {
+        $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND date < ? and comment is NULL');
+        $req->execute(array($username, $date));
+    }
+    else {
+        $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND date < ?');
+    $req->execute(array($username, $date));
+    }
+    $req->closeCursor();
+}
+include 'inc/header.php';
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Shortener</title>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="assets/css/spectre-<?php echo WEB_THEME ?>.css"/>
-    <link rel="stylesheet" href="assets/css/common.css"/>
-</head>
-<body class="<?php echo WEB_THEME; ?>">
-
-    <!-- je vais le mettre dans le header de la page avec login/logout/signin-->
-    <button class="btn" onclick="window.location.href = '.'">Go Back !</button>
-    <button class="btn" onclick="window.location.href = 'list.php?UNKNOWN'">Get link from no connected people</button>
-
-    <?php
-    header("Cache-Control: no-cache, must-revalidate");
-    $root_url = $_SERVER['REQUEST_URI'];
-    
-    if (empty($_SESSION['username'])) {
-        header('Location: ' . DEFAULT_URL);
-        exit();
-    }
-    
-    if (isset($_GET['delete']) && $_GET['delete'] != "") {
-        $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND short = ?');
-        $req->execute(array($username, $_GET['delete']));
-        $req->closeCursor();
-    }
-    elseif (!empty($_GET['deleteRange']) ){
-        $date = new DateTime("UTC");
-        $date->modify('-'.$_GET['deleteRange'].' day');
-        $date = $date->format('Y-m-d H:i:s');
-        echo $date;
-        if (!empty($_GET['keepBM']) && $_GET['keepBM'] == "true") {
-            $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND date < ? and comment is NULL');
-            $req->execute(array($username, $date));
-        }
-        else {
-            $req = $connexion->prepare('DELETE FROM shortener WHERE username= ? AND date < ?');
-            $req->execute(array($username, $date));
-        }
-        $req->closeCursor();
-    }
-    ?>
+<button class="btn" onclick="window.location.href = 'list.php?UNKNOWN'">Get link from no connected people</button>
     <table id="list" class="table table-striped table-hover">
         <thead>
             <tr>
@@ -124,11 +108,12 @@ else {
             <div class="form-group">
                 <label class="form-checkbox">
                     <input type="checkbox" name="keepBM" value="true">
-                    <i class="form-icon"></i>keep bookmarks
+                    <i class="form-icon"></i>keep URL with comments
                 </label>
             </div>
 
             <input class="btn" type="submit" value="Delete" />
         </form>
     </div>
-</body>
+<?php include 'inc/footer.php';?>
+
