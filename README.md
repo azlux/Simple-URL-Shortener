@@ -51,7 +51,9 @@ location ~* \.(sqlite3|ht)$ {
 ### Apache configuration (.htaccess) :
 (delete the file if you are on nginx)
 
-### Credit :<p>
+### Credit :
 Based on code provided by [SilouFR](https://github.com/SilouFr)
+
 Dev PHP : [Azlux](https://github.com/azlux)
+
 Design  : [Spokeek](https://github.com/Spokeek)
