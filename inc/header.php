@@ -89,7 +89,7 @@
         </div>
         <div class="form-group">
             <label class="form-label" for="register_password">Password</label>
-            <input class="form-input" type="text" id="register_password" name="username"/>
+            <input class="form-input" type="text" id="register_password" name="password"/>
         </div>
         <div class="form-group">
             <label class="form-label" for="register_email">Email</label>
