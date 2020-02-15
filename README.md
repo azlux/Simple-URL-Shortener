@@ -49,7 +49,15 @@ location ~* \.(sqlite3|ht)$ {
 
 ```
 ### Apache configuration (.htaccess) :
-(delete the file if you are on nginx)
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php?site=$1
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Header always set Strict-Transport-Security "max-age=31536000; preload" env=HTTPS
+```
 
 ### Credit :
 Based on code provided by [SilouFR](https://github.com/SilouFr)
