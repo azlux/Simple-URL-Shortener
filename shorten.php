@@ -109,9 +109,9 @@ else { // POST if webpage used
         exit();
     }
 
-    $url = $_POST['url'];
-    $comment = (!empty($_POST['comment'])) ? $_POST['comment'] : NULL;
-    $custom = (!empty($_POST['custom'])) ? $_POST['custom'] : NULL;
+    $url = htmlspecialchars(strip_tags($_POST['url']));
+    $comment = (!empty($_POST['comment'])) ? htmlspecialchars(strip_tags($_POST['comment'])) : NULL;
+    $custom = (!empty($_POST['custom'])) ? htmlspecialchars(strip_tags($_POST['custom'])) : NULL;
     $url_shortened = short($connexion, $username, $url, $custom, $comment);
 }
 include 'inc/header.php';
