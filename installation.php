@@ -17,7 +17,8 @@ if ($connexion->errorCode() == 0) {
       `date` datetime NOT NULL,
       PRIMARY KEY (`short`)
       );
-
+    ");
+    $connexion->query("
     CREATE TABLE `users` (
       `username` varchar(25) NOT NULL,
       `password` char(128) NOT NULL,
