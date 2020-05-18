@@ -53,10 +53,7 @@ location ~* \.(sqlite3|ht)$ {
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ ./index.php?site=$1
-RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-Header always set Strict-Transport-Security "max-age=31536000; preload" env=HTTPS
+RewriteRule ^([a-zA-Z0-9]+)/?$ index.php?site=$1 [L] 
 ```
 
 ### Credit :
