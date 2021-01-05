@@ -11,16 +11,21 @@ if (isset($_GET['signin']) and !empty($_POST['username']) and !empty($_POST['pas
 	    echo 'Username not allowed';
     }
     else {
-        $options = ['cost' => 12,];
-        $pwd_hash = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
-        $is_admin=0;
-        $res = $connexion->query('SELECT count(*) FROM users');
-        if ($res->fetch()[0] == 0) {
-	    $is_admin=1;
+        if (ALLOW_SIGNIN) {
+            $options = ['cost' => 12,];
+            $pwd_hash = password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
+            $is_admin=0;
+            $res = $connexion->query('SELECT count(*) FROM users');
+            if ($res->fetch()[0] == 0) {
+	        $is_admin=1;
+            }
+            $req = $connexion->prepare('INSERT INTO users (username, password, email, token, admin) VALUES (?,?,?,?,?)');
+            $req->execute(array($_POST['username'], $pwd_hash, $_POST['email'], uniqid(), $is_admin));
+            echo 'ACCOUNT CREATED.';
         }
-        $req = $connexion->prepare('INSERT INTO users (username, password, email, token, admin) VALUES (?,?,?,?,?)');
-        $req->execute(array($_POST['username'], $pwd_hash, $_POST['email'], uniqid(), $is_admin));
-        echo 'ACCOUNT CREATED.';
+        else {
+            echo 'FAILED.';
+        }
     }
     header("refresh:5;url=" . DEFAULT_URL);
     exit;
