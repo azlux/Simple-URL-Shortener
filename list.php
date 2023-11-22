@@ -78,7 +78,7 @@ include 'inc/header.php';
         </td>
         <td>
             <a href="<?php echo $deleteUrl; ?>" class="delete">
-                <img src="/assets/img/delete-icon.png"/>
+                <img src="assets/img/delete-icon.png"/>
             </a>
         </td>
     </tr>
