@@ -43,7 +43,7 @@ if (PUBLIC_INSTANCE != 'true' and empty($username)) {
 include 'inc/header.php';
 
 // Main page
-$code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'/shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $token . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
+$code_js = 'javascript:(function () {var d = document;var w = window;var enc = encodeURIComponent;var f =\' ' . DEFAULT_URL . '\';var l = d.location;var p = \'shorten.php?url=\' + enc(l.href) + \'&amp;comment=\' + enc(d.title) + \'&amp;token=' . $token . '\';var u = f + p;var a = function () {if (!w.open(u))l.href = u;};if (/Firefox/.test(navigator.userAgent))setTimeout(a, 0); else a();void(0);})()';
 
 ?>
     <a class="forkit" href="https://github.com/azlux/Simple-URL-Shortener/">
@@ -56,7 +56,7 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
             if(value === ""){
                 return disableCustomUrlField(false)
             }
-            const result = await fetch('/shorten.php', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `is_short_free=${value}`})
+            const result = await fetch('shorten.php', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `is_short_free=${value}`})
             if(!result.ok){
                 return disableCustomUrlField(true)
             }
@@ -93,7 +93,7 @@ $code_js = 'javascript:(function () {var d = document;var w = window;var enc = e
                 </div>
             <div>
                 <input type="submit" value="Shorten" class="btn btn-primary"/>
-                <button class="btn float-right" onclick="event.preventDefault(); window.location.href = '/list.php'">List of shortened links</button>
+                <button class="btn float-right" onclick="event.preventDefault(); window.location.href = 'list.php'">List of shortened links</button>
             </div>
         </form>
         <div class="flex">
