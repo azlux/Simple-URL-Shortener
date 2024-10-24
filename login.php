@@ -52,8 +52,10 @@ elseif (!empty($_POST['username']) AND !empty($_POST['password'])) {
 
 if(!empty($_SESSION['username'])) {
     if (isset($_GET['changepassword']) AND !empty($_POST['old_password']) AND !empty($_POST['new_password'])) {
-        $req = $connexion->prepare('UPDATE users SET password = ? WHERE username = ? AND password = ?');
-        $req->execute(array($_POST['new_password'], $_SESSION['username'], $_POST['old_password']));
+        $req = $connexion->prepare('UPDATE users SET password = ? WHERE username = ?');
+	$options = ['cost' => 12,];
+        $pwd_hash = password_hash($_POST['new_password'], PASSWORD_BCRYPT, $options);
+        $req->execute(array($pwd_hash, $_SESSION['username']));
         echo "PASSWORD UPDATED";
         header("refresh:5;url=" . DEFAULT_URL);
     }
