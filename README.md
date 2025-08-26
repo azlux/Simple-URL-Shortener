@@ -1,10 +1,12 @@
 # Important Announcement
-I don't really use this projet anymore, so I will not improve this projet anymore.
+I don't really use this project anymore, so I will not improve this project.
 
-For me, this project is finishef and feature completed, since I want a **REALLY** simple URL shortener.
+For me, this project is finished and feature completed, since I want a REALLY simple URL shortener.
 
 If you want improvements, fell free to fork it. If I see a new good fork, I will write it here.
 If you want a better shortener, you can search on the [awesome-selfhosted page](https://github.com/awesome-selfhosted/awesome-selfhosted?tab=readme-ov-file#url-shorteners)
+
+See https://github.com/azlux/Simple-URL-Shortener/issues/15 if you want to give me feedback.
 
 # simple-shortener by Azlux
 
