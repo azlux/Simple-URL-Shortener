@@ -31,8 +31,8 @@ func main() {
 		log.Println("No .env file found, using system environment variables")
 	}
 
-	driver := getEnvDefault("DB_DRIVER", "sqlite3")
-	dsn := getEnvDefault("DB_DSN", "file:/test.db")
+	driver := getEnvDefault("DB_DRIVER", "sqlite")
+	dsn := getEnvDefault("DB_DSN", "file://test.db")
 
 	r := gin.Default()
 	db := config.ConnectDatabase(driver, dsn)

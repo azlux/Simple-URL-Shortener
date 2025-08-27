@@ -6,7 +6,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql" // MySQL
 	_ "github.com/lib/pq"              // PostgreSQL
-	_ "github.com/ncruces/go-sqlite3"  // SQLite
+	_ "modernc.org/sqlite"
 )
 
 func ConnectDatabase(driver, dsn string) *sql.DB {
@@ -27,20 +27,20 @@ func ConnectDatabase(driver, dsn string) *sql.DB {
 func EnsureDataBaseTablesExist(driver string, db *sql.DB) error {
 	var query string
 	switch driver {
-	case "sqlite3":
+	case "sqlite":
 		query = `
-        CREATE TABLE IF NOT EXISTS urls (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            short TEXT UNIQUE,
-            original TEXT
-        );`
+			CREATE TABLE IF NOT EXISTS urls (
+				id INTEGER PRIMARY KEY AUTOINCREMENT,
+				short TEXT UNIQUE,
+				original TEXT
+			);`
 	default:
 		query = `
-        CREATE TABLE IF NOT EXISTS urls (
-            id SERIAL PRIMARY KEY,
-            short VARCHAR(255) UNIQUE NOT NULL,
-            original TEXT NOT NULL
-        );`
+			CREATE TABLE IF NOT EXISTS urls (
+				id SERIAL PRIMARY KEY,
+				short VARCHAR(255) UNIQUE NOT NULL,
+				original TEXT NOT NULL
+			);`
 	}
 	_, err := db.Exec(query)
 	return err
