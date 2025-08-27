@@ -1,0 +1,59 @@
+definitions:
+  models.URL:
+    properties:
+      id:
+        type: integer
+      original:
+        type: string
+      shortCode:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /{code}:
+    get:
+      description: Retourne l'URL longue à partir du code court
+      parameters:
+      - description: Code court
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Récupère l'URL originale
+  /shorten:
+    post:
+      consumes:
+      - application/json
+      description: Génère un code court pour une URL longue
+      parameters:
+      - description: URL à raccourcir
+        in: body
+        name: url
+        required: true
+        schema:
+          $ref: '#/definitions/models.URL'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.URL'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Crée une URL raccourcie
+swagger: "2.0"
