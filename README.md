@@ -10,6 +10,8 @@ See https://github.com/azlux/Simple-URL-Shortener/issues/15 if you want to give 
 
 # simple-shortener by Azlux
 
+The source of this project is https://git.azlux.fr/azlux/Simple-URL-Shortener, **PR are accepted on the source only**.
+
 Simple shortener working with MySQL or SQLite database in PHP.
 The goal is to create a simple and KISS shortener without dependencies.
 The user can add comments for the link to find it faster into its history.
