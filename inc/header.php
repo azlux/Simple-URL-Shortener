@@ -34,7 +34,7 @@
         <?php
             if (ALLOW_SIGNIN == 'true'){
         ?>
-            <button class="btn" onClick="openModal('modal-signin')">Sign In</button>
+            <button class="btn" onClick="openModal('modal-signin')">Sign Up</button>
         <?php
             }
         }
